@@ -57,10 +57,41 @@
     <title>PHP Hotel</title>
 </head>
 <body>
-    <ul>
-    <?php foreach ($hotels as $hotel) {
-        ?><li><?= $hotel['name'] ?> // <?= $hotel['description'] ?> <?= $hotel['parking'] ?> // <?= $hotel['vote'] ?></li> // <?= $hotel['distance_to_center'] ?><?php
-    } ?>
-    </ul>
+    
+   <?php 
+    // Prendo il primo elemento dell'array e lo metto in una variabile
+    $firstHotel = $hotels[0]; 
+    // Mi faccio restituire le chiavi dell'array(primo elem)
+    $keys = array_keys($firstHotel); ?>
+
+
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <!-- Ciclo sull'array $key creato in precedenza per stampare le chiavi  -->
+            <?php foreach ($keys as $key ) {
+                ?><th scope="col"><?= $key ?></th><?php
+            } ?>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- ciclo sugli hotel per stampare tutte le informazini di ciascuno -->
+        <?php foreach ($hotels as $key => $hotel) {?>
+            <tr>
+                <th scope="row"><?= $key + 1 ?></th>
+                    <td><?= $hotel['name'] ?></td>
+                    <td><?= $hotel['description'] ?></td>
+                    <td>
+                        <?= $hotel['parking'] 
+                        ? '<i class="fa-solid fa-check" style="color: #00f56a;"></i>' 
+                        : '<i class="fa-solid fa-xmark" style="color: #ff0000;"></i>'?>
+                    </td>
+                    <td><?= $hotel['vote'] ?></td>
+                    <td><?= $hotel['distance_to_center'] ?></td>
+            </tr><?php
+        }?>
+  </tbody>
+</table>
 </body>
 </html>

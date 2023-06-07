@@ -105,13 +105,18 @@ $hotels = [
 
     $filteredHotels = [];
 
+    // verifico che entrambi gli array filtrati non siano vuoti 
     if (!empty($filteredParking) && !empty($filteredRate)) {
         $filteredHotels = array_merge($filteredParking, $filteredRate);
-    } elseif (!empty($filteredParking)) {
+    }
+    // verifico nei seguenti 2 elseif se almeno uno dei due array filtrati è vuoto 
+    elseif (!empty($filteredParking)) {
         $filteredHotels = $filteredParking;
     } elseif (!empty($filteredRate)) {
         $filteredHotels = $filteredRate;
-    } else {
+    }
+    // se entrambi sono vuoti restituisco l'array originale
+    else {
         $filteredHotels = $hotels;
     }
 
